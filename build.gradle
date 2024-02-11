@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.2'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'com.netflix.dgs.codegen' version '6.1.4'
+}
+
+group = 'com.nhn'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(platform('com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release'))
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter'
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-extended-scalars'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'net.datafaker:datafaker:2.1.0'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+generateJava {
+    packageName = 'com.nhn.graphql.generated'
+}
