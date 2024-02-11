@@ -1,9 +1,6 @@
-type Hello {
-    text: String!
-    randomNumber: Int
-}
-
 type Query {
     allHellos: [Hello]
     oneHello: Hello
+    books(author: String): [Book]
+    booksByReleased(releasedInput: ReleaseHistoryInput!): [Book]
 }
